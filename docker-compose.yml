@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  web:
+    container_name: ${APP_NAME}_web
+    build:
+      context: ./docker/web
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www/app
+  db:
+    container_name: ${APP_NAME}_db
+    image: postgres:10.5
+    ports:
+      - 5432:5432
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=laravel_docker
+ 
+ 
+
